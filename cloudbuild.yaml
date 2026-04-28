@@ -1,0 +1,61 @@
+# Cloud Build — triggered on push to main
+# Builds the Docker image, pushes to Artifact Registry, deploys to Cloud Run
+#
+# Required Cloud Build substitution variables (set in trigger config):
+#   _REGION            e.g. europe-west2
+#   _SERVICE           e.g. biosense
+#   _REPO              e.g. biosense-repo  (Artifact Registry repo name)
+#   _CLOUDSQL_INSTANCE e.g. my-project:europe-west2:biosense-db
+
+steps:
+  # ── 1. Build Docker image ──────────────────────────────────────────────────
+  - name: 'gcr.io/cloud-builders/docker'
+    id: Build
+    args:
+      - build
+      - '--no-cache'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_SERVICE}:$COMMIT_SHA'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_SERVICE}:latest'
+      - '.'
+
+  # ── 2. Push image to Artifact Registry ────────────────────────────────────
+  - name: 'gcr.io/cloud-builders/docker'
+    id: Push
+    args:
+      - push
+      - '--all-tags'
+      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_SERVICE}'
+
+  # ── 3. Deploy to Cloud Run ─────────────────────────────────────────────────
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: Deploy
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - '${_SERVICE}'
+      - '--image=${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_SERVICE}:$COMMIT_SHA'
+      - '--region=${_REGION}'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--port=3000'
+      - '--min-instances=0'
+      - '--max-instances=10'
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=80'
+      # All secrets injected from Secret Manager at runtime
+      - >-
+        --set-secrets=DATABASE_URL=DATABASE_URL:latest,NEXTAUTH_SECRET=NEXTAUTH_SECRET:latest,ANTHROPIC_API_KEY=ANTHROPIC_API_KEY:latest,NEXTAUTH_URL=NEXTAUTH_URL:latest,STRIPE_SECRET_KEY=STRIPE_SECRET_KEY:latest,STRIPE_WEBHOOK_SECRET=STRIPE_WEBHOOK_SECRET:latest,RESEND_API_KEY=RESEND_API_KEY:latest,CRON_SECRET=CRON_SECRET:latest,R2_ACCOUNT_ID=R2_ACCOUNT_ID:latest,R2_ACCESS_KEY_ID=R2_ACCESS_KEY_ID:latest,R2_SECRET_ACCESS_KEY=R2_SECRET_ACCESS_KEY:latest,R2_BUCKET_NAME=R2_BUCKET_NAME:latest,OURA_CLIENT_ID=OURA_CLIENT_ID:latest,OURA_CLIENT_SECRET=OURA_CLIENT_SECRET:latest,WHOOP_CLIENT_ID=WHOOP_CLIENT_ID:latest,WHOOP_CLIENT_SECRET=WHOOP_CLIENT_SECRET:latest
+      - '--set-env-vars=NODE_ENV=production'
+      # Cloud SQL connection — connects via Unix socket in Cloud Run
+      - '--add-cloudsql-instances=${_CLOUDSQL_INSTANCE}'
+
+images:
+  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_SERVICE}:$COMMIT_SHA'
+  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_SERVICE}:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
