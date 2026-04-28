@@ -132,9 +132,9 @@ export function calcHealthScore(input: ScoreInput): {
 }
 
 export function scoreLabel(score: number): { label: string; color: string } {
-  if (score >= 85) return { label: 'Excellent', color: '#4dc88c' }
-  if (score >= 70) return { label: 'Good', color: '#40b0b0' }
-  if (score >= 55) return { label: 'Fair', color: '#c89840' }
-  if (score >= 40) return { label: 'Low', color: '#c07040' }
-  return { label: 'Critical', color: '#c05050' }
+  if (score >= 85) return { label: 'Excellent', color: '#22C55E' }
+  if (score >= 70) return { label: 'Good',      color: '#3B82F6' }
+  if (score >= 55) return { label: 'Fair',      color: '#F59E0B' }
+  if (score >= 40) return { label: 'Low',       color: '#EF4444' }
+  return { label: 'Critical', color: '#DC2626' }
 }

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import { cn } from '@/lib/utils'
+import { BrandMark } from '@/components/brand-mark'
 import {
   LayoutDashboard,
   ClipboardCheck,
@@ -38,16 +39,10 @@ export function AppNav() {
     >
       {/* Wordmark */}
       <Link href="/dashboard" className="flex items-center gap-2.5">
-        <div
-          className="w-6 h-6 rounded-[6px] flex items-center justify-center font-serif text-xs font-bold text-accent"
-          style={{
-            background: 'rgba(77,200,140,0.08)',
-            border: '1px solid rgba(77,200,140,0.2)',
-          }}
-        >
-          B
-        </div>
-        <span className="font-serif text-[15px] font-semibold text-t1">BioSense</span>
+        <BrandMark size={24} />
+        <span className="font-sans text-[15px] font-semibold text-t1 tracking-[-0.01em]">
+          BioSense
+        </span>
       </Link>
 
       {/* Desktop nav */}

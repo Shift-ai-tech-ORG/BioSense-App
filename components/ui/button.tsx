@@ -16,7 +16,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer'
 
     const variants = {
-      primary: 'bg-accent text-bg hover:brightness-110 active:scale-98 font-semibold',
+      primary: 'text-white hover:brightness-110 active:scale-98 font-semibold',
       ghost: 'bg-transparent border border-[var(--b1)] text-t1 hover:bg-s2 hover:border-[var(--b2)]',
       subtle: 'bg-s2 border border-[var(--b0)] text-t2 hover:text-t1 hover:border-[var(--b1)]',
     }
@@ -27,10 +27,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       lg: 'text-sm px-6 py-3',
     }
 
+    const gradientStyle =
+      variant === 'primary'
+        ? { background: 'linear-gradient(135deg, #7625B0 0%, #F04D4D 100%)' }
+        : undefined
+
     return (
       <button
         ref={ref}
         className={cn(base, variants[variant], sizes[size], className)}
+        style={gradientStyle}
         disabled={disabled || loading}
         {...props}
       >

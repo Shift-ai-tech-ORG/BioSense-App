@@ -4,49 +4,14 @@ import { useState, useEffect } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardLabel } from '@/components/ui/card'
-import { ExternalLink, CheckCircle, Upload } from 'lucide-react'
+import { ExternalLink, CheckCircle, Upload, Watch, Smartphone } from 'lucide-react'
 
 const WEARABLES = [
-  {
-    id: 'oura',
-    name: 'Oura Ring',
-    emoji: '💍',
-    desc: 'Sleep, HRV, readiness, temperature',
-    type: 'oauth',
-    status: 'available',
-  },
-  {
-    id: 'whoop',
-    name: 'Whoop',
-    emoji: '⌚',
-    desc: 'Recovery, strain, sleep performance',
-    type: 'oauth',
-    status: 'available',
-  },
-  {
-    id: 'garmin',
-    name: 'Garmin',
-    emoji: '🏃',
-    desc: 'Activity, HRV, steps, VO2max',
-    type: 'oauth',
-    status: 'available',
-  },
-  {
-    id: 'samsung',
-    name: 'Samsung Health',
-    emoji: '📱',
-    desc: 'Steps, heart rate, sleep (Android)',
-    type: 'oauth',
-    status: 'available',
-  },
-  {
-    id: 'apple',
-    name: 'Apple Health',
-    emoji: '🍎',
-    desc: 'Upload Health Auto Export JSON',
-    type: 'upload',
-    status: 'available',
-  },
+  { id: 'oura',    name: 'Oura Ring',       Icon: Watch,       desc: 'Sleep, HRV, readiness, temperature',    type: 'oauth',  status: 'available' },
+  { id: 'whoop',   name: 'Whoop',           Icon: Watch,       desc: 'Recovery, strain, sleep performance',   type: 'oauth',  status: 'available' },
+  { id: 'garmin',  name: 'Garmin',          Icon: Watch,       desc: 'Activity, HRV, steps, VO2max',          type: 'oauth',  status: 'available' },
+  { id: 'samsung', name: 'Samsung Health',  Icon: Smartphone,  desc: 'Steps, heart rate, sleep (Android)',    type: 'oauth',  status: 'available' },
+  { id: 'apple',   name: 'Apple Health',    Icon: Smartphone,  desc: 'Upload Health Auto Export JSON',        type: 'upload', status: 'available' },
 ]
 
 interface WearableSync {
@@ -160,11 +125,11 @@ export default function WearablesPage() {
               <div
                 className="w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
                 style={{
-                  background: conn ? 'rgba(77,200,140,0.1)' : '#192018',
-                  border: conn ? '1px solid rgba(77,200,140,0.2)' : '1px solid rgba(255,255,255,0.055)',
+                  background: conn ? 'rgba(240,77,77,0.1)' : '#222222',
+                  border: conn ? '1px solid rgba(240,77,77,0.2)' : '1px solid rgba(255,255,255,0.055)',
                 }}
               >
-                {w.emoji}
+                <w.Icon className="w-5 h-5 text-t2" />
               </div>
 
               <div className="flex-1 min-w-0">

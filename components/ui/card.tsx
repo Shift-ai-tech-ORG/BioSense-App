@@ -11,7 +11,7 @@ export function Card({ className, accent, children, ...props }: CardProps) {
       className={cn(
         'bg-s1 border rounded-[11px] p-5',
         'border-[var(--b0)]',
-        accent && 'border-[var(--a-ring)] bg-gradient-to-br from-[rgba(77,200,140,0.04)] to-s1',
+        accent && 'border-[var(--a-ring)] bg-gradient-to-br from-[rgba(240,77,77,0.04)] to-s1',
         className,
       )}
       {...props}

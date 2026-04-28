@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
+import { ShieldCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function ConsentPage() {
@@ -21,7 +22,9 @@ export default function ConsentPage() {
     try {
       const res = await fetch('/api/user/consent', { method: 'POST' })
       if (!res.ok) throw new Error()
-      await update() // refresh JWT
+      // Pass a truthy value so the JWT callback's `session` param is defined
+      // and triggers the DB re-read of hasConsented
+      await update({ refresh: true })
       router.push('/onboarding')
     } catch {
       toast.error('Something went wrong. Please try again.')
@@ -33,10 +36,10 @@ export default function ConsentPage() {
     <div className="max-w-[420px] w-full">
       {/* Icon */}
       <div
-        className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-6"
-        style={{ background: 'rgba(77,200,140,0.08)', border: '1px solid rgba(77,200,140,0.2)' }}
+        className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+        style={{ background: 'rgba(240,77,77,0.08)', border: '1px solid rgba(240,77,77,0.2)' }}
       >
-        🛡️
+        <ShieldCheck className="w-5 h-5 text-accent" />
       </div>
 
       <div className="text-[10.5px] font-bold tracking-[0.12em] uppercase text-t3 mb-3">
@@ -49,8 +52,8 @@ export default function ConsentPage() {
       <div
         className="rounded-xl p-5 mb-6 space-y-4"
         style={{
-          background: 'rgba(77,200,140,0.04)',
-          border: '1px solid rgba(77,200,140,0.15)',
+          background: 'rgba(240,77,77,0.04)',
+          border: '1px solid rgba(240,77,77,0.15)',
         }}
       >
         <p className="text-[13.5px] text-t1 font-semibold leading-relaxed">

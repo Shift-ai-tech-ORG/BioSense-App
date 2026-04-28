@@ -3,45 +3,22 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { Zap, Moon, Smile, Waves } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const sliders = [
-  {
-    id: 'energy' as const,
-    label: 'Energy',
-    emoji: '⚡',
-    low: 'Exhausted',
-    high: 'Energised',
-  },
-  {
-    id: 'sleep' as const,
-    label: 'Sleep quality',
-    emoji: '🌙',
-    low: 'Very poor',
-    high: 'Excellent',
-  },
-  {
-    id: 'mood' as const,
-    label: 'Mood',
-    emoji: '🧠',
-    low: 'Very low',
-    high: 'Great',
-  },
-  {
-    id: 'stress' as const,
-    label: 'Stress',
-    emoji: '🌊',
-    low: 'None',
-    high: 'Very high',
-  },
+  { id: 'energy' as const, label: 'Energy',        Icon: Zap,    low: 'Exhausted', high: 'Energised' },
+  { id: 'sleep'  as const, label: 'Sleep quality', Icon: Moon,   low: 'Very poor', high: 'Excellent' },
+  { id: 'mood'   as const, label: 'Mood',          Icon: Smile,  low: 'Very low',  high: 'Great'     },
+  { id: 'stress' as const, label: 'Stress',        Icon: Waves,  low: 'None',      high: 'Very high' },
 ]
 
 type SliderKey = 'energy' | 'sleep' | 'mood' | 'stress'
 
 function getSliderColor(val: number, inverted = false) {
   const v = inverted ? 11 - val : val
-  if (v >= 8) return '#4dc88c'
-  if (v >= 6) return '#40b0b0'
+  if (v >= 8) return '#F04D4D'
+  if (v >= 6) return '#7625B0'
   if (v >= 4) return '#c89840'
   if (v >= 2) return '#c07040'
   return '#c05050'
@@ -89,7 +66,7 @@ export default function CheckinPage() {
       if (!res.ok) throw new Error()
       const msg =
         elapsed <= 15
-          ? `Logged in ${elapsed}s ✅`
+          ? `Logged in ${elapsed}s`
           : 'Check-in saved!'
       toast.success(msg)
       router.push('/dashboard')
@@ -123,13 +100,13 @@ export default function CheckinPage() {
               key={s.id}
               className="rounded-2xl p-5"
               style={{
-                background: '#0c1210',
+                background: '#111111',
                 border: '1px solid rgba(255,255,255,0.055)',
               }}
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">{s.emoji}</span>
+                  <s.Icon className="w-4 h-4 text-t3" />
                   <span className="text-[13.5px] font-semibold text-t1">{s.label}</span>
                 </div>
                 <span
@@ -149,7 +126,7 @@ export default function CheckinPage() {
                 onChange={(e) => setValues((prev) => ({ ...prev, [s.id]: Number(e.target.value) }))}
                 className="w-full h-2 rounded-full appearance-none cursor-pointer"
                 style={{
-                  background: `linear-gradient(to right, ${color} 0%, ${color} ${(val - 1) / 9 * 100}%, #192018 ${(val - 1) / 9 * 100}%, #192018 100%)`,
+                  background: `linear-gradient(to right, ${color} 0%, ${color} ${(val - 1) / 9 * 100}%, #222222 ${(val - 1) / 9 * 100}%, #222222 100%)`,
                   outline: 'none',
                 }}
               />
@@ -166,7 +143,7 @@ export default function CheckinPage() {
       {/* Preview score */}
       <div
         className="flex items-center justify-between mt-6 mb-6 rounded-xl px-4 py-3"
-        style={{ background: '#111a16', border: '1px solid rgba(255,255,255,0.055)' }}
+        style={{ background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.055)' }}
       >
         <span className="text-[12px] text-t3">Combined today</span>
         <span className="font-mono text-[15px] font-bold text-t1">

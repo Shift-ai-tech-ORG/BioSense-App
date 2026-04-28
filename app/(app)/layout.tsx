@@ -8,7 +8,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   if (!session) redirect('/login')
   if (!session.user.hasConsented) redirect('/consent')
-  if (!session.user.onboardingDone) redirect('/onboarding')
+  // onboardingDone redirect lives in root page.tsx only — (setup)/onboarding
+  // is outside this layout, so we never create a redirect loop here.
 
   return (
     <div className="min-h-screen bg-bg">

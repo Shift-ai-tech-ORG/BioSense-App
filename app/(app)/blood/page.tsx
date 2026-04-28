@@ -8,9 +8,9 @@ import { Card, CardLabel } from '@/components/ui/card'
 import { Upload, FileText } from 'lucide-react'
 
 const TIER_CONFIG = {
-  T1: { emoji: '🟢', label: 'Normal', color: '#4dc88c', bg: 'rgba(77,200,140,0.08)' },
-  T2: { emoji: '🟡', label: 'Moderate', color: '#c89840', bg: 'rgba(200,152,64,0.08)' },
-  T3: { emoji: '🔴', label: 'Red Flag', color: '#c05050', bg: 'rgba(192,80,80,0.08)' },
+  T1: { label: 'Normal',   color: '#22C55E', bg: 'rgba(34,197,94,0.08)'   },
+  T2: { label: 'Moderate', color: '#F59E0B', bg: 'rgba(245,158,11,0.08)' },
+  T3: { label: 'Red Flag', color: '#EF4444', bg: 'rgba(239,68,68,0.08)'  },
 }
 
 interface Marker {
@@ -110,7 +110,7 @@ export default function BloodPage() {
             onDrop={handleDrop}
             onClick={() => fileRef.current?.click()}
             className="border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-all hover:border-[var(--a-ring)] hover:bg-[var(--a-bg)]"
-            style={{ borderColor: file ? 'rgba(77,200,140,0.3)' : 'rgba(255,255,255,0.09)' }}
+            style={{ borderColor: file ? 'rgba(240,77,77,0.3)' : 'rgba(255,255,255,0.09)' }}
           >
             <input
               ref={fileRef}
@@ -176,7 +176,7 @@ export default function BloodPage() {
               const count = tier === 'T1' ? result.t1Count : tier === 'T2' ? result.t2Count : result.t3Count
               return (
                 <Card key={tier} className="text-center">
-                  <div className="text-xl mb-1">{cfg.emoji}</div>
+                  <div className="w-2 h-2 rounded-full mx-auto mb-2" style={{ background: cfg.color }} />
                   <div
                     className="font-mono text-[28px] font-bold leading-none mb-1"
                     style={{ color: cfg.color }}

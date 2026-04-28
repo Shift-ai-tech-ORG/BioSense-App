@@ -1,49 +1,30 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
+import { Zap, Leaf, Flame, Brain, Watch, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 
 type GoalType = 'PERFORMANCE' | 'HEALTH' | 'BODY_COMP' | 'WELLBEING'
 
-const goals: { type: GoalType; emoji: string; title: string; desc: string }[] = [
-  {
-    type: 'PERFORMANCE',
-    emoji: '⚡',
-    title: 'Performance',
-    desc: 'Optimise training, VO2max, and peak physical output',
-  },
-  {
-    type: 'HEALTH',
-    emoji: '🌿',
-    title: 'Longevity & Health',
-    desc: 'Reduce biological age and build sustainable health',
-  },
-  {
-    type: 'BODY_COMP',
-    emoji: '🔥',
-    title: 'Body Composition',
-    desc: 'Change body fat, muscle mass, and metabolic health',
-  },
-  {
-    type: 'WELLBEING',
-    emoji: '🧠',
-    title: 'Wellbeing',
-    desc: 'Improve sleep, energy, mood, and stress management',
-  },
+const goals: { type: GoalType; Icon: React.ElementType; title: string; desc: string }[] = [
+  { type: 'PERFORMANCE', Icon: Zap,   title: 'Performance',       desc: 'Optimise training, VO2max, and peak physical output' },
+  { type: 'HEALTH',      Icon: Leaf,  title: 'Longevity & Health', desc: 'Reduce biological age and build sustainable health' },
+  { type: 'BODY_COMP',   Icon: Flame, title: 'Body Composition',   desc: 'Change body fat, muscle mass, and metabolic health' },
+  { type: 'WELLBEING',   Icon: Brain, title: 'Wellbeing',          desc: 'Improve sleep, energy, mood, and stress management' },
 ]
 
 const wearables = [
-  { id: 'oura', label: 'Oura Ring', emoji: '💍' },
-  { id: 'whoop', label: 'Whoop', emoji: '⌚' },
-  { id: 'garmin', label: 'Garmin', emoji: '🏃' },
-  { id: 'samsung', label: 'Samsung Health', emoji: '📱' },
-  { id: 'apple', label: 'Apple Health', emoji: '🍎' },
-  { id: 'none', label: 'None yet', emoji: '➕' },
+  { id: 'oura',    label: 'Oura Ring',       Icon: Watch },
+  { id: 'whoop',   label: 'Whoop',           Icon: Watch },
+  { id: 'garmin',  label: 'Garmin',          Icon: Watch },
+  { id: 'samsung', label: 'Samsung Health',  Icon: Watch },
+  { id: 'apple',   label: 'Apple Health',    Icon: Watch },
+  { id: 'none',    label: 'None yet',        Icon: Plus  },
 ]
 
 const TOTAL_STEPS = 5
@@ -126,7 +107,7 @@ export default function OnboardingPage() {
       <div
         className="w-full max-w-[520px] rounded-2xl p-8"
         style={{
-          background: '#0c1210',
+          background: '#111111',
           border: '1px solid rgba(255,255,255,0.055)',
           boxShadow: '0 24px 80px rgba(0,0,0,0.4)',
         }}
@@ -135,7 +116,7 @@ export default function OnboardingPage() {
         <div className="flex items-center gap-2 mb-8">
           <div
             className="w-6 h-6 rounded-[6px] flex items-center justify-center font-serif text-xs font-bold text-accent"
-            style={{ background: 'rgba(77,200,140,0.08)', border: '1px solid rgba(77,200,140,0.2)' }}
+            style={{ background: 'rgba(240,77,77,0.08)', border: '1px solid rgba(240,77,77,0.2)' }}
           >
             B
           </div>
@@ -164,7 +145,7 @@ export default function OnboardingPage() {
                       : 'border-[var(--b0)] bg-s2 hover:border-[var(--b1)]',
                   )}
                 >
-                  <div className="text-xl mb-2">{g.emoji}</div>
+                  <g.Icon className="w-4 h-4 text-accent mb-2" />
                   <div className="text-[13px] font-semibold text-t1 mb-0.5">{g.title}</div>
                   <div className="text-[11.5px] text-t3 leading-relaxed">{g.desc}</div>
                 </button>
@@ -248,7 +229,7 @@ export default function OnboardingPage() {
             </p>
             <div
               className="flex items-center gap-2 rounded-lg px-3 py-2 mb-5"
-              style={{ background: 'rgba(77,200,140,0.06)', border: '1px solid rgba(77,200,140,0.12)' }}
+              style={{ background: 'rgba(240,77,77,0.06)', border: '1px solid rgba(240,77,77,0.12)' }}
             >
               <span className="text-[11px] text-accent font-semibold">🔒 Encrypted end-to-end.</span>
               <span className="text-[11px] text-t3">Only you can see this data.</span>
@@ -320,7 +301,7 @@ export default function OnboardingPage() {
                       : 'border-[var(--b0)] bg-s2 hover:border-[var(--b1)]',
                   )}
                 >
-                  <span className="text-lg">{w.emoji}</span>
+                  <w.Icon className="w-4 h-4 text-t3" />
                   <span className="text-[13px] font-medium text-t1">{w.label}</span>
                 </button>
               ))}
@@ -339,7 +320,7 @@ export default function OnboardingPage() {
         {/* STEP 5 — Ready */}
         {step === 5 && (
           <div className="text-center">
-            <div className="text-5xl mb-6">🌿</div>
+            <div className="mb-6"><Leaf className="w-10 h-10 text-accent" /></div>
             <h2 className="font-serif text-[24px] font-bold text-t1 mb-3 leading-tight">
               You're all set.
             </h2>

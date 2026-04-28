@@ -1,16 +1,17 @@
-# ── Stage 1: deps ──────────────────────────────────────────────────────────────
+# ── Stage 1: deps (ALL deps including devDeps needed for Next.js build) ────────
 FROM node:22-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+# Install ALL dependencies (Tailwind/PostCSS devDeps are required at build time)
+RUN npm ci
 
 # ── Stage 2: builder ───────────────────────────────────────────────────────────
 FROM node:22-alpine AS builder
 WORKDIR /app
 
-# Copy deps and full source
+# Copy all deps (including dev) and source
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { ClipboardCheck, Droplets, Wifi, Dna, CheckCircle } from 'lucide-react'
 import { scoreLabel } from '@/lib/score'
 import { Card, CardLabel } from '@/components/ui/card'
 
@@ -100,7 +101,7 @@ export function DashboardClient({
           {/* Ring */}
           <div className="relative flex-shrink-0">
             <svg width="90" height="90" viewBox="0 0 90 90">
-              <circle cx="45" cy="45" r="38" fill="none" stroke="#192018" strokeWidth="8" />
+              <circle cx="45" cy="45" r="38" fill="none" stroke="#222222" strokeWidth="8" />
               {hasData && (
                 <circle
                   cx="45"
@@ -186,8 +187,8 @@ export function DashboardClient({
                   <div
                     className="w-full h-6 rounded-md transition-all"
                     style={{
-                      background: filled ? 'rgba(77,200,140,0.25)' : '#192018',
-                      border: i === todayIdx ? '1px solid rgba(77,200,140,0.4)' : 'none',
+                      background: filled ? 'rgba(240,77,77,0.25)' : '#222222',
+                      border: i === todayIdx ? '1px solid rgba(240,77,77,0.4)' : 'none',
                     }}
                   />
                   <span className="text-[8.5px] text-t4">{day[0]}</span>
@@ -219,7 +220,7 @@ export function DashboardClient({
                     className="flex-1 rounded-sm transition-all"
                     style={{
                       height: `${Math.max(8, pct)}%`,
-                      background: `rgba(77,200,140,${0.2 + (avg / 10) * 0.6})`,
+                      background: `rgba(240,77,77,${0.2 + (avg / 10) * 0.6})`,
                     }}
                     title={`${c.date}: avg ${avg.toFixed(1)}/10`}
                   />
@@ -236,9 +237,9 @@ export function DashboardClient({
           <Card
             className={`cursor-pointer hover:border-[var(--b1)] transition-all h-full ${hasCheckinToday ? 'opacity-60' : ''}`}
           >
-            <div className="text-2xl mb-3">📋</div>
+            <div className="mb-3 text-accent"><ClipboardCheck className="w-5 h-5" /></div>
             <div className="text-[13px] font-semibold text-t1 mb-1">
-              {hasCheckinToday ? 'Check-in done ✅' : 'Daily check-in'}
+              {hasCheckinToday ? <span className="flex items-center gap-1.5">Check-in done <CheckCircle className="w-3.5 h-3.5 text-opt inline" /></span> : 'Daily check-in'}
             </div>
             <div className="text-[12px] text-t3 leading-relaxed">
               {hasCheckinToday
@@ -251,7 +252,7 @@ export function DashboardClient({
         {/* Blood upload */}
         <Link href="/blood">
           <Card className="cursor-pointer hover:border-[var(--b1)] transition-all h-full">
-            <div className="text-2xl mb-3">🩸</div>
+            <div className="mb-3 text-accent"><Droplets className="w-5 h-5" /></div>
             <div className="text-[13px] font-semibold text-t1 mb-1">
               {hasBlood ? 'Upload new results' : 'Upload blood results'}
             </div>
@@ -266,7 +267,7 @@ export function DashboardClient({
         {/* Wearables */}
         <Link href="/wearables">
           <Card className="cursor-pointer hover:border-[var(--b1)] transition-all h-full">
-            <div className="text-2xl mb-3">📡</div>
+            <div className="mb-3 text-accent"><Wifi className="w-5 h-5" /></div>
             <div className="text-[13px] font-semibold text-t1 mb-1">
               {connectedWearables.length > 0
                 ? `${connectedWearables.length} connected`
@@ -287,15 +288,15 @@ export function DashboardClient({
           className="flex items-center gap-4 p-5 rounded-2xl cursor-pointer hover:brightness-105 transition-all"
           style={{
             background:
-              'linear-gradient(135deg, rgba(77,200,140,0.06) 0%, rgba(64,176,176,0.04) 100%)',
-            border: '1px solid rgba(77,200,140,0.15)',
+              'linear-gradient(135deg, rgba(240,77,77,0.06) 0%, rgba(118,37,176,0.04) 100%)',
+            border: '1px solid rgba(240,77,77,0.15)',
           }}
         >
           <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
-            style={{ background: 'rgba(77,200,140,0.1)', border: '1px solid rgba(77,200,140,0.2)' }}
+            className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{ background: 'rgba(240,77,77,0.1)', border: '1px solid rgba(240,77,77,0.2)' }}
           >
-            🧬
+            <Dna className="w-5 h-5 text-accent" />
           </div>
           <div>
             <div className="text-[13px] font-semibold text-t1 mb-0.5">Ask Anything</div>

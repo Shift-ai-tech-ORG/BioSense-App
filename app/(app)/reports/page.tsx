@@ -1,6 +1,7 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import { BarChart3 } from 'lucide-react'
 import { Card, CardLabel } from '@/components/ui/card'
 
 export default async function ReportsPage() {
@@ -38,7 +39,7 @@ export default async function ReportsPage() {
       {weeklyReports.length === 0 && monthlyReports.length === 0 && (
         <Card>
           <div className="text-center py-8">
-            <div className="text-4xl mb-4">📊</div>
+            <div className="flex justify-center mb-4"><BarChart3 className="w-8 h-8 text-t4" /></div>
             <div className="text-[14px] font-semibold text-t1 mb-2">No reports yet</div>
             <p className="text-[13px] text-t2 max-w-[320px] mx-auto leading-relaxed">
               Your first weekly report generates after 3 check-ins. Monthly reports start after your
