@@ -1,0 +1,236 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum GoalType {
+  PERFORMANCE
+  HEALTH
+  BODY_COMP
+  WELLBEING
+}
+
+enum SubscriptionStatus {
+  FREE
+  ACTIVE
+  CANCELLED
+  PAST_DUE
+}
+
+enum PatternConfidence {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+model User {
+  id                 String             @id @default(cuid())
+  email              String             @unique
+  name               String?
+  password           String?
+  age                Int?
+  ageVerified        Boolean            @default(false)
+  goalType           GoalType?
+  goalText           String?
+  goalDeadline       DateTime?
+  allergies          String[]
+  conditions         String[]
+  lifestyle          String?
+  preferences        String[]
+  onboardingDone     Boolean            @default(false)
+  hasConsented       Boolean            @default(false)
+  subscriptionId     String?
+  subscriptionStatus SubscriptionStatus @default(FREE)
+  stripeCustomerId   String?
+  pushSubscription   String?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  accounts       Account[]
+  sessions       Session[]
+  checkins       DailyCheckin[]
+  healthScores   HealthScore[]
+  bloodResults   BloodResult[]
+  biologicalAges BiologicalAge[]
+  wearableSyncs  WearableSync[]
+  chatMessages   ChatMessage[]
+  weeklyReports  WeeklyReport[]
+  monthlyReports MonthlyReport[]
+  patterns       Pattern[]
+  consents       Consent[]
+  notifLogs      NotificationLog[]
+}
+
+// NextAuth required models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model DailyCheckin {
+  id        String   @id @default(cuid())
+  userId    String
+  date      DateTime @db.Date
+  energy    Int
+  sleep     Int
+  mood      Int
+  stress    Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+}
+
+model HealthScore {
+  id              String   @id @default(cuid())
+  userId          String
+  date            DateTime @db.Date
+  score           Float
+  breakdown       Json
+  personalWeights Json?
+  createdAt       DateTime @default(now())
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+}
+
+model BloodResult {
+  id        String   @id @default(cuid())
+  userId    String
+  drawDate  DateTime @db.Date
+  markers   Json
+  pdfUrl    String?
+  aiSummary String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model BiologicalAge {
+  id          String   @id @default(cuid())
+  userId      String
+  date        DateTime @db.Date
+  bioAge      Float
+  calendarAge Int
+  delta       Float
+  drivers     Json
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model WearableSync {
+  id           String    @id @default(cuid())
+  userId       String
+  provider     String
+  accessToken  String?
+  refreshToken String?
+  lastSync     DateTime?
+  data         Json?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, provider])
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  role      String
+  content   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model WeeklyReport {
+  id                String   @id @default(cuid())
+  userId            String
+  period            String
+  content           Json
+  generatedAt       DateTime @default(now())
+  bestDay           String?
+  worstDay          String?
+  checkinsCompleted Int?
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, period])
+}
+
+model MonthlyReport {
+  id          String   @id @default(cuid())
+  userId      String
+  period      String
+  content     Json
+  generatedAt DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, period])
+}
+
+model Pattern {
+  id                 String            @id @default(cuid())
+  userId             String
+  type               String
+  description        String
+  confidence         PatternConfidence
+  discoveredAt       DateTime          @default(now())
+  isNew              Boolean           @default(true)
+  feedbackThumbsUp   Int               @default(0)
+  feedbackThumbsDown Int               @default(0)
+  scoreImpact        Float?
+  relatedActions     Json?
+  user               User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Consent {
+  id              String   @id @default(cuid())
+  userId          String
+  tcVersion       String
+  privacyVersion  String
+  consentVersion  String
+  dataConsentFlag Boolean  @default(true)
+  ipAddress       String?
+  createdAt       DateTime @default(now())
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model NotificationLog {
+  id      String   @id @default(cuid())
+  userId  String
+  trigger String
+  message String
+  channel String
+  sentAt  DateTime @default(now())
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

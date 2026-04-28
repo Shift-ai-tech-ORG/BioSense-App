@@ -1,0 +1,16 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/weekly-reports",
+      "schedule": "0 7 * * 0"
+    },
+    {
+      "path": "/api/cron/monthly-reports",
+      "schedule": "0 7 28-31 * *"
+    },
+    {
+      "path": "/api/cron/anomaly-check",
+      "schedule": "*/5 * * * *"
+    }
+  ]
+}
