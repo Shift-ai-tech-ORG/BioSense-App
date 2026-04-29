@@ -1,0 +1,30 @@
+version: '3.9'
+
+# Local development stack — Postgres only.
+# The Next.js app runs via `npm run dev` on the host.
+#
+# Usage:
+#   docker compose up -d        # start Postgres
+#   docker compose down         # stop
+#   docker compose down -v      # stop + wipe data
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: biosense
+      POSTGRES_PASSWORD: biosense
+      POSTGRES_DB: biosense
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U biosense']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
