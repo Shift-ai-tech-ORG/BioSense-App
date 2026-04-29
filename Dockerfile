@@ -4,6 +4,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json package-lock.json ./
+COPY prisma ./prisma
 # Install ALL dependencies (Tailwind/PostCSS devDeps are required at build time)
 RUN npm ci
 
