@@ -17,8 +17,8 @@ type SliderKey = 'energy' | 'sleep' | 'mood' | 'stress'
 
 function getSliderColor(val: number, inverted = false) {
   const v = inverted ? 11 - val : val
-  if (v >= 8) return '#F04D4D'
-  if (v >= 6) return '#7625B0'
+  if (v >= 8) return '#6E9B5E'
+  if (v >= 6) return '#5A7040'
   if (v >= 4) return '#c89840'
   if (v >= 2) return '#c07040'
   return '#c05050'
@@ -100,8 +100,8 @@ export default function CheckinPage() {
               key={s.id}
               className="rounded-2xl p-5"
               style={{
-                background: '#111111',
-                border: '1px solid rgba(255,255,255,0.055)',
+                background: '#FFFFFF',
+                border: '1px solid rgba(26,26,22,0.07)',
               }}
             >
               <div className="flex items-center justify-between mb-4">
@@ -143,7 +143,7 @@ export default function CheckinPage() {
       {/* Preview score */}
       <div
         className="flex items-center justify-between mt-6 mb-6 rounded-xl px-4 py-3"
-        style={{ background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.055)' }}
+        style={{ background: '#FAF8F4', border: '1px solid rgba(26,26,22,0.07)' }}
       >
         <span className="text-[12px] text-t3">Combined today</span>
         <span className="font-mono text-[15px] font-bold text-t1">

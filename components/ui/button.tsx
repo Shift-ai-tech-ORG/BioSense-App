@@ -29,7 +29,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const gradientStyle =
       variant === 'primary'
-        ? { background: 'linear-gradient(135deg, #7625B0 0%, #F04D4D 100%)' }
+        ? { background: 'linear-gradient(135deg, #5A7040 0%, #6E9B5E 100%)' }
         : undefined
 
     return (

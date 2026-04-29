@@ -34,7 +34,7 @@ export function AppNav() {
       style={{
         background: 'rgba(3,5,8,0.85)',
         backdropFilter: 'blur(24px)',
-        borderBottom: '1px solid rgba(255,255,255,0.055)',
+        borderBottom: '1px solid rgba(26,26,22,0.07)',
       }}
     >
       {/* Wordmark */}

@@ -86,9 +86,9 @@ export default function LoginPage() {
       </form>
 
       <div className="flex items-center gap-3 my-5">
-        <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.055)' }} />
+        <div className="flex-1 h-px" style={{ background: 'rgba(26,26,22,0.07)' }} />
         <span className="text-[11px] text-t4">or</span>
-        <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.055)' }} />
+        <div className="flex-1 h-px" style={{ background: 'rgba(26,26,22,0.07)' }} />
       </div>
 
       <p className="text-[11px] text-t4 leading-relaxed">

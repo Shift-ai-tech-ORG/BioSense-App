@@ -110,9 +110,9 @@ export function ProfileClient({ user }: { user: ProfileData }) {
           <span
             className="px-2 py-0.5 rounded-full text-[10.5px] font-semibold"
             style={{
-              background: user.subscriptionStatus === 'ACTIVE' ? 'rgba(240,77,77,0.1)' : '#222222',
-              color: user.subscriptionStatus === 'ACTIVE' ? '#F04D4D' : '#4f6b57',
-              border: user.subscriptionStatus === 'ACTIVE' ? '1px solid rgba(240,77,77,0.2)' : '1px solid rgba(255,255,255,0.055)',
+              background: user.subscriptionStatus === 'ACTIVE' ? 'rgba(110,155,94,0.1)' : '#F0ECE5',
+              color: user.subscriptionStatus === 'ACTIVE' ? '#6E9B5E' : '#4f6b57',
+              border: user.subscriptionStatus === 'ACTIVE' ? '1px solid rgba(110,155,94,0.2)' : '1px solid rgba(26,26,22,0.07)',
             }}
           >
             {user.subscriptionStatus}

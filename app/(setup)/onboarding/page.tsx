@@ -107,16 +107,16 @@ export default function OnboardingPage() {
       <div
         className="w-full max-w-[520px] rounded-2xl p-8"
         style={{
-          background: '#111111',
-          border: '1px solid rgba(255,255,255,0.055)',
-          boxShadow: '0 24px 80px rgba(0,0,0,0.4)',
+          background: '#FFFFFF',
+          border: '1px solid rgba(26,26,22,0.07)',
+          boxShadow: '0 24px 80px rgba(0,0,0,0.10)',
         }}
       >
         {/* Wordmark */}
         <div className="flex items-center gap-2 mb-8">
           <div
             className="w-6 h-6 rounded-[6px] flex items-center justify-center font-serif text-xs font-bold text-accent"
-            style={{ background: 'rgba(240,77,77,0.08)', border: '1px solid rgba(240,77,77,0.2)' }}
+            style={{ background: 'rgba(110,155,94,0.08)', border: '1px solid rgba(110,155,94,0.2)' }}
           >
             B
           </div>
@@ -229,7 +229,7 @@ export default function OnboardingPage() {
             </p>
             <div
               className="flex items-center gap-2 rounded-lg px-3 py-2 mb-5"
-              style={{ background: 'rgba(240,77,77,0.06)', border: '1px solid rgba(240,77,77,0.12)' }}
+              style={{ background: 'rgba(110,155,94,0.06)', border: '1px solid rgba(110,155,94,0.12)' }}
             >
               <span className="text-[11px] text-accent font-semibold">🔒 Encrypted end-to-end.</span>
               <span className="text-[11px] text-t3">Only you can see this data.</span>

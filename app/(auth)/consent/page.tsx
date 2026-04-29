@@ -37,7 +37,7 @@ export default function ConsentPage() {
       {/* Icon */}
       <div
         className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
-        style={{ background: 'rgba(240,77,77,0.08)', border: '1px solid rgba(240,77,77,0.2)' }}
+        style={{ background: 'rgba(110,155,94,0.08)', border: '1px solid rgba(110,155,94,0.2)' }}
       >
         <ShieldCheck className="w-5 h-5 text-accent" />
       </div>
@@ -52,8 +52,8 @@ export default function ConsentPage() {
       <div
         className="rounded-xl p-5 mb-6 space-y-4"
         style={{
-          background: 'rgba(240,77,77,0.04)',
-          border: '1px solid rgba(240,77,77,0.15)',
+          background: 'rgba(110,155,94,0.04)',
+          border: '1px solid rgba(110,155,94,0.15)',
         }}
       >
         <p className="text-[13.5px] text-t1 font-semibold leading-relaxed">
@@ -87,7 +87,7 @@ export default function ConsentPage() {
       {/* Consent checkbox */}
       <label
         className="flex items-start gap-3 cursor-pointer mb-6"
-        style={{ borderTop: '1px solid rgba(255,255,255,0.055)', paddingTop: '20px' }}
+        style={{ borderTop: '1px solid rgba(26,26,22,0.07)', paddingTop: '20px' }}
       >
         <div
           onClick={() => setAccepted(!accepted)}

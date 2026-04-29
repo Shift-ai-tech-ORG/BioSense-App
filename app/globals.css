@@ -1,49 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  /* Border tokens */
-  --b0: rgba(247, 247, 247, 0.06);
-  --b1: rgba(247, 247, 247, 0.10);
-  --b2: rgba(247, 247, 247, 0.16);
-  /* Brand accent tokens — Imperial Red */
-  --a-bg:   rgba(240, 77, 77, 0.08);
-  --a-ring: rgba(240, 77, 77, 0.25);
-  /* Brand gradient */
-  --brand-gradient: linear-gradient(135deg, #7625B0 0%, #F04D4D 100%);
-  --brand-gradient-h: linear-gradient(90deg, #7625B0 0%, #F04D4D 100%);
+  --b0: rgba(26, 26, 22, 0.07);
+  --b1: rgba(26, 26, 22, 0.11);
+  --b2: rgba(26, 26, 22, 0.16);
+  --a-bg:   rgba(110, 155, 94, 0.08);
+  --a-ring: rgba(110, 155, 94, 0.30);
+  --brand-gradient: linear-gradient(135deg, #8AB87A 0%, #5A7040 100%);
+  --brand-gradient-h: linear-gradient(90deg, #8AB87A 0%, #5A7040 100%);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html,
 body {
-  background: #0A0A0A;
-  color: #F7F7F7;
+  background: #F5F1EC;
+  color: #1A1A16;
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-thumb {
-  background: #2C2C2C;
+  background: #C8C4BC;
   border-radius: 2px;
 }
 
-/* Focus ring */
 *:focus-visible {
-  outline: 2px solid rgba(240, 77, 77, 0.5);
+  outline: 2px solid rgba(110, 155, 94, 0.55);
   outline-offset: 2px;
 }
 
-/* Border utilities */
 .border-b0 { border-color: var(--b0); }
 .border-b1 { border-color: var(--b1); }
 .border-b2 { border-color: var(--b2); }
 .border-accent-ring { border-color: var(--a-ring); }
 .bg-accent-subtle   { background-color: var(--a-bg); }
 
-/* Brand gradient text utility */
 .text-brand-gradient {
   background: var(--brand-gradient);
   -webkit-background-clip: text;
@@ -51,26 +44,23 @@ body {
   background-clip: text;
 }
 
-/* Brand gradient border / line */
 .border-brand-gradient {
   border-image: var(--brand-gradient-h) 1;
 }
 
-/* Card base */
 .card {
-  background: #111111;
+  background: #FFFFFF;
   border: 1px solid var(--b0);
   border-radius: 11px;
   padding: 20px 22px;
 }
 
-/* Dot grid */
 .dot-grid::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.10;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+  opacity: 0.08;
+  background-image: radial-gradient(circle, rgba(26,26,22,0.25) 1px, transparent 1px);
   background-size: 32px 32px;
 }

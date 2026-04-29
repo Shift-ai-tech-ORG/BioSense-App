@@ -16,11 +16,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           />
           {/* Brand bloom — grape */}
           <div className="absolute inset-0" style={{
-            background: 'radial-gradient(ellipse 80% 70% at 15% 60%, rgba(118,37,176,0.12) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse 80% 70% at 15% 60%, rgba(110,155,94,0.10) 0%, transparent 60%)',
           }} />
           {/* Brand bloom — red */}
           <div className="absolute inset-0" style={{
-            background: 'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(240,77,77,0.08) 0%, transparent 55%)',
+            background: 'radial-gradient(ellipse 60% 50% at 80% 20%, rgba(110,155,94,0.08) 0%, transparent 55%)',
           }} />
         </div>
 
@@ -38,11 +38,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <div className="inline-flex items-center gap-2.5 mb-8">
               <div
                 className="w-1.5 h-1.5 rounded-full animate-pulse"
-                style={{ background: '#F04D4D' }}
+                style={{ background: '#6E9B5E' }}
               />
               <span
                 className="text-[11px] font-bold tracking-[0.14em] uppercase"
-                style={{ color: '#F04D4D' }}
+                style={{ color: '#6E9B5E' }}
               >
                 Longevity intelligence · Private beta
               </span>
@@ -52,7 +52,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               Your biology.
               <br />
               <span style={{
-                background: 'linear-gradient(135deg, #7625B0 0%, #F04D4D 100%)',
+                background: 'linear-gradient(135deg, #5A7040 0%, #6E9B5E 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -83,7 +83,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                   <div
                     className="font-sans text-[28px] font-black leading-none tracking-[-0.02em]"
                     style={{
-                      background: 'linear-gradient(135deg, #7625B0 0%, #F04D4D 100%)',
+                      background: 'linear-gradient(135deg, #5A7040 0%, #6E9B5E 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
@@ -104,7 +104,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           >
             {['GDPR & DIFC compliant', 'UAE registered', 'Educational insights only', 'Cancel anytime'].map((t) => (
               <div key={t} className="flex items-center gap-1.5 text-[11px] text-t3">
-                <span className="font-bold text-[10px]" style={{ color: '#F04D4D' }}>✓</span>
+                <span className="font-bold text-[10px]" style={{ color: '#6E9B5E' }}>✓</span>
                 {t}
               </div>
             ))}

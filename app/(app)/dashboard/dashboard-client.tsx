@@ -187,8 +187,8 @@ export function DashboardClient({
                   <div
                     className="w-full h-6 rounded-md transition-all"
                     style={{
-                      background: filled ? 'rgba(240,77,77,0.25)' : '#222222',
-                      border: i === todayIdx ? '1px solid rgba(240,77,77,0.4)' : 'none',
+                      background: filled ? 'rgba(110,155,94,0.25)' : '#E5E1D8',
+                      border: i === todayIdx ? '1px solid rgba(110,155,94,0.4)' : 'none',
                     }}
                   />
                   <span className="text-[8.5px] text-t4">{day[0]}</span>
@@ -220,7 +220,7 @@ export function DashboardClient({
                     className="flex-1 rounded-sm transition-all"
                     style={{
                       height: `${Math.max(8, pct)}%`,
-                      background: `rgba(240,77,77,${0.2 + (avg / 10) * 0.6})`,
+                      background: `rgba(110,155,94,${0.2 + (avg / 10) * 0.6})`,
                     }}
                     title={`${c.date}: avg ${avg.toFixed(1)}/10`}
                   />
@@ -288,13 +288,13 @@ export function DashboardClient({
           className="flex items-center gap-4 p-5 rounded-2xl cursor-pointer hover:brightness-105 transition-all"
           style={{
             background:
-              'linear-gradient(135deg, rgba(240,77,77,0.06) 0%, rgba(118,37,176,0.04) 100%)',
-            border: '1px solid rgba(240,77,77,0.15)',
+              'linear-gradient(135deg, rgba(110,155,94,0.06) 0%, rgba(90,112,64,0.04) 100%)',
+            border: '1px solid rgba(110,155,94,0.15)',
           }}
         >
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-            style={{ background: 'rgba(240,77,77,0.1)', border: '1px solid rgba(240,77,77,0.2)' }}
+            style={{ background: 'rgba(110,155,94,0.1)', border: '1px solid rgba(110,155,94,0.2)' }}
           >
             <Dna className="w-5 h-5 text-accent" />
           </div>

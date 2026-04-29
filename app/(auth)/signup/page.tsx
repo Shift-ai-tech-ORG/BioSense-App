@@ -159,7 +159,7 @@ export default function SignupPage() {
         {/* Legal checkboxes */}
         <div
           className="space-y-3 pt-4 mt-4"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.055)' }}
+          style={{ borderTop: '1px solid rgba(26,26,22,0.07)' }}
         >
           <Checkbox
             id="age"

@@ -5,7 +5,7 @@ interface BrandMarkProps {
 
 /**
  * BioSense S mark — the custom "S" logo rendered in the brand gradient
- * (Grape #7625B0 → Imperial Red #F04D4D).
+ * (Grape #5A7040 → Imperial Red #6E9B5E).
  * Per brand guidelines: gradient applies to the mark only, not the wordmark text.
  * Never recreate, redraw, or alter; this SVG approximates the approved mark.
  */
@@ -23,8 +23,8 @@ export function BrandMark({ size = 28, className = '' }: BrandMarkProps) {
     >
       <defs>
         <linearGradient id={gid} x1="36" y1="0" x2="0" y2="36" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stopColor="#7625B0" />
-          <stop offset="100%" stopColor="#F04D4D" />
+          <stop offset="0%"   stopColor="#5A7040" />
+          <stop offset="100%" stopColor="#6E9B5E" />
         </linearGradient>
       </defs>
       {/*

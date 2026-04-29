@@ -110,7 +110,7 @@ export default function BloodPage() {
             onDrop={handleDrop}
             onClick={() => fileRef.current?.click()}
             className="border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-all hover:border-[var(--a-ring)] hover:bg-[var(--a-bg)]"
-            style={{ borderColor: file ? 'rgba(240,77,77,0.3)' : 'rgba(255,255,255,0.09)' }}
+            style={{ borderColor: file ? 'rgba(110,155,94,0.3)' : 'rgba(26,26,22,0.09)' }}
           >
             <input
               ref={fileRef}
@@ -196,7 +196,7 @@ export default function BloodPage() {
               <p className="text-[13px] text-t2 leading-[1.8]">{result.aiSummary}</p>
               <div
                 className="flex items-center gap-2 mt-4 pt-4"
-                style={{ borderTop: '1px solid rgba(255,255,255,0.055)' }}
+                style={{ borderTop: '1px solid rgba(26,26,22,0.07)' }}
               >
                 <span className="text-[10.5px] text-t4">
                   This is not medical advice. Consult a healthcare professional.

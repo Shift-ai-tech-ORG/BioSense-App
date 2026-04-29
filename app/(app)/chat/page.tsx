@@ -87,8 +87,8 @@ export default function ChatPage() {
             <div
               className="rounded-2xl p-5"
               style={{
-                background: 'rgba(240,77,77,0.04)',
-                border: '1px solid rgba(240,77,77,0.12)',
+                background: 'rgba(110,155,94,0.04)',
+                border: '1px solid rgba(110,155,94,0.12)',
               }}
             >
               <div className="text-[13.5px] font-semibold text-t1 mb-2">
@@ -112,7 +112,7 @@ export default function ChatPage() {
                     key={s}
                     onClick={() => send(s)}
                     className="text-[12px] px-3 py-1.5 rounded-full text-t2 hover:text-t1 hover:border-[var(--b1)] transition-all"
-                    style={{ background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.055)' }}
+                    style={{ background: '#FAF8F4', border: '1px solid rgba(26,26,22,0.07)' }}
                   >
                     {s}
                   </button>
@@ -136,8 +136,8 @@ export default function ChatPage() {
               )}
               style={
                 m.role === 'user'
-                  ? { background: '#F04D4D' }
-                  : { background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.055)' }
+                  ? { background: '#6E9B5E' }
+                  : { background: '#FAF8F4', border: '1px solid rgba(26,26,22,0.07)' }
               }
             >
               {m.content.split('\n').map((line, j) => (
@@ -154,7 +154,7 @@ export default function ChatPage() {
           <div className="flex justify-start">
             <div
               className="px-4 py-3 rounded-2xl flex items-center gap-1.5"
-              style={{ background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.055)' }}
+              style={{ background: '#FAF8F4', border: '1px solid rgba(26,26,22,0.07)' }}
             >
               {[0, 0.15, 0.3].map((delay) => (
                 <span
@@ -173,7 +173,7 @@ export default function ChatPage() {
       {/* Input */}
       <div
         className="flex-shrink-0 flex items-end gap-3 rounded-2xl p-3"
-        style={{ background: '#111111', border: '1px solid rgba(255,255,255,0.09)' }}
+        style={{ background: '#FFFFFF', border: '1px solid rgba(26,26,22,0.09)' }}
       >
         <textarea
           ref={inputRef}
@@ -189,7 +189,7 @@ export default function ChatPage() {
           onClick={() => send(input)}
           disabled={!input.trim() || loading}
           className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all disabled:opacity-30"
-          style={{ background: '#F04D4D' }}
+          style={{ background: '#6E9B5E' }}
         >
           <Send className="w-4 h-4 text-bg" />
         </button>
